@@ -62,9 +62,10 @@ export class WebDAVClient {
 
 	connect() {
 		// Use relative /webdav path and let browser handle authentication via cookies
-		// No credentials needed since we use cookie-based authentication
+		// withCredentials ensures cookies (JWT session, auth proxy) are sent with every request
 		const clientOptions = {
 			authType: AuthType.Auto,
+			withCredentials: true,
 			// Add timeout to prevent hanging requests
 			timeout: 10000, // 10 seconds
 			// Add headers for better error handling
